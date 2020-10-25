@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">ShoeStore</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="email_input">Email</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="sign_in">Sign In</string>
+    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem beatae consequuntur culpa deleniti ea eligendi error illo incidunt
+        libero nesciunt nisi perferendis provident quaerat rem rerum suscipit ullam, unde vel! Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        Consectetur culpa cumque est ex fuga, illo, ipsa libero necessitatibus odio perspiciatis quaerat quos sint voluptates. Adipisci impedit in molestiae placeat recusandae?</string>
+    <string name="welcome_text">This is the welcome screen of this app and I will put some lorem
+        text here and below it one button so you can click on it and navigate to the Instructions screen</string>
+    <string name="next">Next</string>
+    <string name="instructions_title">Instructions of how to use the app</string>
+    <string name="instructions_of_the_app" formatted="true">
+       "The purpose of this app is to save a list of shoes. \n\nBy accessing the next screen you can see a list of saved shoes in which nothing may have been saved yet.\n\nTo introduce new shoes you have to press the button where it will take you to the detail screen where you can fill in the necessary information and save it.\n\nChanges will be reflected instantly on the list screen."
+    </string>
+    <string name="shoes_app">Shoes App</string>
+</resources>
