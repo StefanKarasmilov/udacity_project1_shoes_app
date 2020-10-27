@@ -20,7 +20,6 @@ class LoginFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
-        activity?.title = "Login"
 
         binding.btnLogin.setOnClickListener { navToWelcomeScreen() }
         binding.btnSignIn.setOnClickListener { navToWelcomeScreen() }

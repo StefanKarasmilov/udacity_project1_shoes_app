@@ -20,7 +20,6 @@ class WelcomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_welcome, container, false)
-        activity?.title = "Welcome"
 
         binding.btnNextWelcome.setOnClickListener { navToInstructionsScreen() }
 

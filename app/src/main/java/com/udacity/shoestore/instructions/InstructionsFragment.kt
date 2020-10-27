@@ -20,7 +20,6 @@ class InstructionsFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_instructions, container, false)
-        activity?.title = "Instructions"
 
         binding.btnNextInstructions.setOnClickListener { navToShoesListScreen() }
 
