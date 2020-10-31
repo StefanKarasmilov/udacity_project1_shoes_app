@@ -18,4 +18,11 @@
        "The purpose of this app is to save a list of shoes. \n\nBy accessing the next screen you can see a list of saved shoes in which nothing may have been saved yet.\n\nTo introduce new shoes you have to press the button where it will take you to the detail screen where you can fill in the necessary information and save it.\n\nChanges will be reflected instantly on the list screen."
     </string>
     <string name="shoes_app">Shoes App</string>
+    <string name="logout">Logout</string>
+    <string name="create_new_shoe">Create new shoes</string>
+    <string name="name">Name</string>
+    <string name="company">Company</string>
+    <string name="shoes_size">Shoes size</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
 </resources>

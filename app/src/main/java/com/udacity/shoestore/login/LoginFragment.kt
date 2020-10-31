@@ -1,14 +1,19 @@
 package com.udacity.shoestore.login
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.edit
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentLoginBinding
+
+const val FIRST_LOGIN_KEY = "first_time_login"
 
 class LoginFragment : Fragment() {
 
@@ -21,14 +26,44 @@ class LoginFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
 
-        binding.btnLogin.setOnClickListener { navToWelcomeScreen() }
-        binding.btnSignIn.setOnClickListener { navToWelcomeScreen() }
+        binding.btnLogin.setOnClickListener {
+            if (isFirstLogin()) {
+                navToWelcomeScreen()
+            } else {
+                navToShoesList()
+            }
+        }
+        binding.btnSignIn.setOnClickListener {
+            if (isFirstLogin()) {
+                navToWelcomeScreen()
+            } else {
+                navToShoesList()
+            }
+        }
 
         return binding.root
     }
 
     private fun navToWelcomeScreen() {
+        saveFirstTimeLogin()
         findNavController().navigate(LoginFragmentDirections.actionLoginToWelcome())
+    }
+
+    private fun navToShoesList() {
+        findNavController().navigate(LoginFragmentDirections.actionLoginToShoesList())
+    }
+
+    private fun saveFirstTimeLogin() {
+        val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
+        sharedPref!!.edit {
+            putBoolean(FIRST_LOGIN_KEY, false)
+            commit()
+        }
+    }
+
+    private fun isFirstLogin(): Boolean {
+        val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
+        return sharedPref!!.getBoolean(FIRST_LOGIN_KEY, true)
     }
 
 }

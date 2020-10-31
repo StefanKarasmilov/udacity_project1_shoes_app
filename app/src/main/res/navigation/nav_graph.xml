@@ -13,6 +13,9 @@
         <action
             android:id="@+id/actionLoginToWelcome"
             app:destination="@id/welcomeFragment" />
+        <action
+            android:id="@+id/actionLoginToShoesList"
+            app:destination="@id/shoesListFragment" />
     </fragment>
     <fragment
         android:id="@+id/welcomeFragment"
@@ -36,5 +39,22 @@
         android:id="@+id/shoesListFragment"
         android:name="com.udacity.shoestore.shoes.ShoesListFragment"
         android:label="fragment_shoes_list"
-        tools:layout="@layout/fragment_shoes_list" />
+        tools:layout="@layout/fragment_shoes_list" >
+        <action
+            android:id="@+id/actionListToDetail"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <action
+        android:id="@+id/action_global_loginFragment"
+        app:destination="@id/loginFragment" />
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.udacity.shoestore.detail.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" >
+        <action
+            android:id="@+id/actionDetailToList"
+            app:destination="@id/shoesListFragment"
+            app:launchSingleTop="true" />
+    </fragment>
 </navigation>

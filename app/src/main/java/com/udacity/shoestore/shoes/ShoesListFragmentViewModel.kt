@@ -7,12 +7,30 @@ import com.udacity.shoestore.models.Shoe
 
 class ShoesListFragmentViewModel : ViewModel() {
 
-    private val _shoes = MutableLiveData<ArrayList<Shoe>>()
+    private var list: ArrayList<Shoe> = arrayListOf()
+
+    private var _shoes = MutableLiveData<ArrayList<Shoe>>()
     val shoes: LiveData<ArrayList<Shoe>>
         get() = _shoes
 
+    init {
+        list = arrayListOf<Shoe>(
+            Shoe("this", 2.23, "", ""),
+            Shoe("this12", 2.23, "", ""),
+            Shoe("this12", 2.23, "", ""),
+            Shoe("this", 2.23, "", ""),
+            Shoe("this12", 2.23, "", ""),
+            Shoe("this", 2.23, "", ""),
+            Shoe("this", 2.23, "", ""),
+            Shoe("this", 2.23, "", ""),
+            Shoe("this", 2.23, "", ""),
+            Shoe("this", 2.23, "", ""),
+            Shoe("this", 2.23, "", ""),
+        )
+        _shoes.value = list
+    }
+
     fun addShoes(shoe: Shoe) {
-        _shoes.value?.add(shoe)
     }
 
 }
