@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.R
@@ -16,7 +17,7 @@ import com.udacity.shoestore.shoes.ShoesListFragmentViewModel
 class DetailFragment : Fragment() {
 
     private lateinit var binding: FragmentDetailBinding
-    private lateinit var viewModel: ShoesListFragmentViewModel
+    private val viewModel: ShoesListFragmentViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,7 +25,6 @@ class DetailFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_detail, container, false)
-        viewModel = ViewModelProvider(this).get(ShoesListFragmentViewModel::class.java)
 
         binding.btnCancel.setOnClickListener {
             findNavController().popBackStack()
@@ -43,7 +43,7 @@ class DetailFragment : Fragment() {
             name = binding.etNameShoes.text.toString(),
             size = binding.etShoesSize.text.toString().toDouble(),
             company = binding.etCompany.text.toString(),
-            description = ""
+            description = binding.etShoesDescription.text.toString()
         )
 
         viewModel.addShoes(shoes)

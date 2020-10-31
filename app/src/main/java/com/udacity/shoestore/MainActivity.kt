@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.core.content.edit
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavDeepLinkBuilder
 import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.findNavController
@@ -15,6 +16,7 @@ import androidx.navigation.ui.NavigationUI
 import com.udacity.shoestore.databinding.ActivityMainBinding
 import com.udacity.shoestore.login.FIRST_LOGIN_KEY
 import com.udacity.shoestore.login.LoginFragmentDirections
+import com.udacity.shoestore.shoes.ShoesListFragmentViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
 
@@ -22,6 +24,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var viewModel: ShoesListFragmentViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +32,8 @@ class MainActivity : AppCompatActivity() {
         Timber.plant(Timber.DebugTree())
         val toolbar = binding.toolbar
         setSupportActionBar(toolbar)
+
+        viewModel = ViewModelProvider(this).get(ShoesListFragmentViewModel::class.java)
 
         val navController = findNavController(R.id.navHostFragment)
         appBarConfiguration = AppBarConfiguration(navController.graph)
@@ -39,10 +44,17 @@ class MainActivity : AppCompatActivity() {
                 R.id.loginFragment -> {
                     toolbar.title = "Login"
                     supportActionBar?.setDisplayHomeAsUpEnabled(false);
+                    if (!isFirstLogin()) {
+                        toolbar.title = "Shoes List"
+                        navController.navigate(LoginFragmentDirections.actionLoginToShoesList())
+                    }
                 }
                 R.id.instructionsFragment -> toolbar.title = "Instructions"
                 R.id.welcomeFragment -> toolbar.title = "Welcome"
-                R.id.shoesListFragment -> toolbar.title = "Shoes List"
+                R.id.shoesListFragment -> {
+                    toolbar.title = "Shoes List"
+                    supportActionBar?.setDisplayHomeAsUpEnabled(false)
+                }
                 R.id.detailFragment -> toolbar.title = "New Shoes"
             }
         }
@@ -56,6 +68,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu, menu)
+        val navController = findNavController(R.id.navHostFragment)
+        val myIcon = menu?.findItem(R.id.action_logout)
+
+        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+            when (destination.id) {
+                R.id.loginFragment -> myIcon?.isVisible = false
+                else -> myIcon?.isVisible = true
+            }
+        }
         return true
     }
 
@@ -77,4 +98,10 @@ class MainActivity : AppCompatActivity() {
         }
         findNavController(R.id.navHostFragment).navigate(R.id.action_global_loginFragment)
     }
+
+    private fun isFirstLogin(): Boolean {
+        val sharedPref = this.getPreferences(Context.MODE_PRIVATE)
+        return sharedPref!!.getBoolean(FIRST_LOGIN_KEY, true)
+    }
+
 }

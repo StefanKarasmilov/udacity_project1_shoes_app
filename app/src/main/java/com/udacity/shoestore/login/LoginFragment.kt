@@ -27,43 +27,26 @@ class LoginFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
 
         binding.btnLogin.setOnClickListener {
-            if (isFirstLogin()) {
-                navToWelcomeScreen()
-            } else {
-                navToShoesList()
-            }
+            navToWelcomeScreen()
         }
         binding.btnSignIn.setOnClickListener {
-            if (isFirstLogin()) {
-                navToWelcomeScreen()
-            } else {
-                navToShoesList()
-            }
+            navToWelcomeScreen()
         }
 
         return binding.root
     }
 
     private fun navToWelcomeScreen() {
-        saveFirstTimeLogin()
+//        saveFirstTimeLogin()
         findNavController().navigate(LoginFragmentDirections.actionLoginToWelcome())
     }
 
-    private fun navToShoesList() {
-        findNavController().navigate(LoginFragmentDirections.actionLoginToShoesList())
-    }
-
-    private fun saveFirstTimeLogin() {
-        val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
-        sharedPref!!.edit {
-            putBoolean(FIRST_LOGIN_KEY, false)
-            commit()
-        }
-    }
-
-    private fun isFirstLogin(): Boolean {
-        val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
-        return sharedPref!!.getBoolean(FIRST_LOGIN_KEY, true)
-    }
-
+//    private fun saveFirstTimeLogin() {
+//        val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
+//        sharedPref!!.edit {
+//            putBoolean(FIRST_LOGIN_KEY, false)
+//            commit()
+//        }
+//    }
+    
 }

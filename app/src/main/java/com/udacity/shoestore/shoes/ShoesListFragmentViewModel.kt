@@ -31,6 +31,7 @@ class ShoesListFragmentViewModel : ViewModel() {
     }
 
     fun addShoes(shoe: Shoe) {
+        list.add(shoe)
     }
 
 }
