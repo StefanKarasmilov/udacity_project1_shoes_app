@@ -37,16 +37,8 @@ class LoginFragment : Fragment() {
     }
 
     private fun navToWelcomeScreen() {
-//        saveFirstTimeLogin()
         findNavController().navigate(LoginFragmentDirections.actionLoginToWelcome())
     }
 
-//    private fun saveFirstTimeLogin() {
-//        val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
-//        sharedPref!!.edit {
-//            putBoolean(FIRST_LOGIN_KEY, false)
-//            commit()
-//        }
-//    }
     
 }

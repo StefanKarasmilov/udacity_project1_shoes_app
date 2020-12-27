@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentDetailBinding
@@ -31,22 +30,38 @@ class DetailFragment : Fragment() {
         }
 
         binding.btnSave.setOnClickListener {
-            saveShoes()
-            findNavController().popBackStack()
+            if (checkFields()) {
+                saveShoes()
+                findNavController().popBackStack()
+            }
         }
 
         return binding.root
     }
 
-    private fun saveShoes() {
-        val shoes = Shoe(
-            name = binding.etNameShoes.text.toString(),
-            size = binding.etShoesSize.text.toString().toDouble(),
-            company = binding.etCompany.text.toString(),
-            description = binding.etShoesDescription.text.toString()
-        )
+    private fun checkFields(): Boolean {
+        binding.apply {
+            when {
+                etNameShoes.text.isEmpty() -> etNameShoes.error = "Required field"
+                etCompany.text.isEmpty() -> etCompany.error = "Required field"
+                etShoesSize.text.isEmpty() -> etShoesSize.error = "Required field"
+                etShoesDescription.text.isEmpty() -> etShoesDescription.error = "Required field"
+                else -> return true
+            }
+        }
+        return false
+    }
 
-        viewModel.addShoes(shoes)
+    private fun saveShoes() {
+        binding.apply {
+            val shoes = Shoe(
+                name = etNameShoes.text.toString(),
+                size = etShoesSize.text.toString().toDouble(),
+                company = etCompany.text.toString(),
+                description = etShoesDescription.text.toString()
+            )
+            viewModel.addShoes(shoes)
+        }
     }
 
 }

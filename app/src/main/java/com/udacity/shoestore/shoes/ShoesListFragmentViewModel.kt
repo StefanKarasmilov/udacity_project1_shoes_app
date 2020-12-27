@@ -7,31 +7,20 @@ import com.udacity.shoestore.models.Shoe
 
 class ShoesListFragmentViewModel : ViewModel() {
 
-    private var list: ArrayList<Shoe> = arrayListOf()
-
     private var _shoes = MutableLiveData<ArrayList<Shoe>>()
     val shoes: LiveData<ArrayList<Shoe>>
         get() = _shoes
 
     init {
-        list = arrayListOf<Shoe>(
-            Shoe("this", 2.23, "", ""),
-            Shoe("this12", 2.23, "", ""),
-            Shoe("this12", 2.23, "", ""),
-            Shoe("this", 2.23, "", ""),
-            Shoe("this12", 2.23, "", ""),
-            Shoe("this", 2.23, "", ""),
-            Shoe("this", 2.23, "", ""),
-            Shoe("this", 2.23, "", ""),
-            Shoe("this", 2.23, "", ""),
-            Shoe("this", 2.23, "", ""),
-            Shoe("this", 2.23, "", ""),
+        _shoes.value = arrayListOf<Shoe>(
+            Shoe("Skechers", 9.5, "Sketchers", "It's shoe love at first sight with sporty style and comfort in the SKECHERS Summits - Fast Attraction shoe. Soft engineered knit mesh fabric upper in a bungee laced slip on athletic training sneaker with stitching accents. Memory Foam insole."),
+            Shoe("Eye Boot", 8.5, "Dr. Martens", "When you think of Dr. Martens, you think of the 1460 8-Eye Boot. This style icon includes all of the authentic Doc Martens touches that have made it a true original. Signature Airwairs leather upper is stiff out of the box and softens over time to conform to the shape of your foot."),
+            Shoe("GEL-Contend 6 Running Sneaker", 10.5, "ASICS", "Stay on track to hit your training targets wearing the ASICS Gel-Contend™ 6 Running Sneaker. Featuring the rearfoot GEL® technology, this sneaker for women provides excellent impact absorption. The AMPLIFOAM™ midsole delivers enhanced flexibility and comfort, while the OrthoLite® sockliner wicks away moisture and ensures odor control."),
         )
-        _shoes.value = list
     }
 
     fun addShoes(shoe: Shoe) {
-        list.add(shoe)
+        _shoes.value?.add(shoe)
     }
 
 }

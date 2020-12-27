@@ -6,6 +6,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+<!--        Here I am using a LinearLayout as it is a very simple design-->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"

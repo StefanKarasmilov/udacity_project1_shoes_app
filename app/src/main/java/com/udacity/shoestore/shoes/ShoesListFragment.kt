@@ -3,8 +3,6 @@ package com.udacity.shoestore.shoes
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.util.TypedValue
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,8 +10,6 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
-import androidx.core.view.marginBottom
-import androidx.core.view.marginTop
 import androidx.core.view.setPadding
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -49,7 +45,7 @@ class ShoesListFragment : Fragment() {
 
         viewModel.shoes.observe(viewLifecycleOwner, { shoes ->
             for ((index, shoe) in shoes.withIndex()) {
-                val card = showCard(shoe)
+                val card = createCard(shoe)
                 linearLayout.addView(card, index)
             }
         })
@@ -57,7 +53,7 @@ class ShoesListFragment : Fragment() {
         return binding.root
     }
 
-    private fun showCard(shoe: Shoe): CardView {
+    private fun createCard(shoe: Shoe): CardView {
         val cardview = CardView(requireContext())
         val linearLayout = LinearLayout(requireContext())
         val textName = TextView(requireContext())
@@ -65,7 +61,11 @@ class ShoesListFragment : Fragment() {
         val textCompany = TextView(requireContext())
         val textDescription = TextView(requireContext())
 
-        textName.text = "Name: ${shoe.name}"
+        textName.apply {
+            text = "Name: ${shoe.name}"
+            setTextColor(Color.BLACK)
+            setTextSize(20f)
+        }
         textSize.text = "Size: ${shoe.size}"
         textCompany.text = "Company: ${shoe.company}"
         textDescription.text = "Description: ${shoe.description}"
